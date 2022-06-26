@@ -31,5 +31,3 @@ mkdir ~/tegola_osm_build/diff
 
 
 sudo -u $DB_USER psql -c "ALTER USER $DB_USER PASSWORD '$DB_PW';"
-
-cd $HOME/setup
