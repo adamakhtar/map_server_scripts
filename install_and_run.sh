@@ -24,32 +24,8 @@ select fav in "${foods[@]}"; do
     esac
 done
 
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/install.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/create_osm_db.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/run_imposm.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/import_osm.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/import_ne.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/add_pg_index.sh
-wget https://raw.github.com/adamakhtar/map_tools/master/setup/start_server.sh
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/tegola.toml
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/imposm3.json
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/postgis_helpers.sql
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/postgis_index.sql
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/natural_earth.sh
-wget https://raw.githubusercontent.com/adamakhtar/tegola-osm/aa-my-version/osm_land.sh
+chmod +x ./map_server_scripts/*
 
-chmod +x install.sh
-chmod +x create_osm_db.sh
-chmod +x run_imposm.sh
-chmod +x import_osm.sh
-chmod +x add_pg_index.sh
-chmod +x start_server.sh
-chmod +x tegola.toml
-chmod +x imposm3.json
-chmod +x postgis_helpers.sql
-chmod +x postgis_index.sql
-chmod +x natural_earth.sh
-chmod +x osm_land.sh
 
 ./install.sh && \
 ./create_osm_db.sh && \
