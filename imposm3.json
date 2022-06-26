@@ -1,0 +1,308 @@
+{
+  "tags": {
+    "load_all": true,
+    "exclude": ["created_by", "source", "source:datetime"]
+  },
+  "generalized_tables": {
+    "water_areas_gen_50_gt_500_000": {
+      "source": "water_areas",
+      "sql_filter": "ST_Area(geometry)>500000.000000",
+      "tolerance": 50.0
+    },
+    "water_ways_gen_50_gt_100_000": {
+      "source": "water_areas",
+      "sql_filter": "ST_Area(geometry)>100000.000000",
+      "tolerance": 50.0
+    },
+    "land_usages_gen_50_gt_100_000": {
+      "source": "land_usages",
+      "sql_filter": "ST_Area(geometry)>100000.000000",
+      "tolerance": 50.0
+    },
+    "transport_lines_gen_50": {
+      "source": "transport_lines",
+      "sql_filter": "type IN ('motorway', 'motorway_link', 'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary', 'tertiary_link')",
+      "tolerance": 50.0
+    }
+  },
+  "tables": {
+    "water_areas": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "area",
+          "name": "area",
+          "key": null
+        }
+      ],
+      "type": "polygon",
+      "mapping": {
+        "water": [
+          "lake",
+          "oxbox",
+          "lagoon",
+          "basin",
+          "reservoir",
+          "moat",
+          "reflecting_pool",
+          "pond",
+          "wastewater"
+        ],
+        "waterway": ["dock"],
+        "amenity": ["swimming_pool"],
+        "landuse": ["basin", "reservoir"],
+        "natural": ["water"]
+      },
+      "filters": {
+        "reject": {
+          "waterway": ["__any__"],
+          "water": [
+            "river",
+            "canal",
+            "stream",
+            "stream_pool",
+            "rapids",
+            "lock",
+            "fish_pass",
+            "ditch"
+          ]
+        }
+      }
+    },
+    "water_ways": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "area",
+          "name": "area",
+          "key": null
+        }
+      ],
+      "type": "polygon",
+      "mapping": {
+        "water": [
+          "river",
+          "canal",
+          "stream",
+          "stream_pool",
+          "rapids",
+          "lock",
+          "fish_pass",
+          "ditch"
+        ],
+        "waterway": [
+          "river",
+          "riverbank",
+          "stream",
+          "tidal_channel",
+          "canal",
+          "ditch",
+          "fish_pass",
+          "waterfall"
+        ]
+      }
+    },
+    "transport_lines": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "boolint",
+          "name": "tunnel",
+          "key": "tunnel"
+        },
+        {
+          "type": "boolint",
+          "name": "bridge",
+          "key": "bridge"
+        },
+        {
+          "type": "string",
+          "name": "ref",
+          "key": "ref"
+        },
+        {
+          "type": "integer",
+          "name": "level",
+          "key": "level"
+        },
+        {
+          "type": "wayzorder",
+          "name": "z_order",
+          "key": "layer"
+        },
+        {
+          "type": "mapping_key",
+          "name": "class",
+          "key": null
+        }
+      ],
+      "type": "linestring",
+      "filters": {
+        "reject": {
+          "area": ["yes"],
+          "footway": ["sidewalk", "crossing", "access_aile"],
+          "service": [
+            "parking_aisle",
+            "driveway",
+            "alley",
+            "emergency_access",
+            "drive-through"
+          ]
+        }
+      },
+      "mappings": {
+        "railway": {
+          "mapping": {
+            "railway": ["__any__"]
+          }
+        },
+        "highway": {
+          "mapping": {
+            "highway": ["__any__"]
+          }
+        },
+        "aeroway": {
+          "mapping": {
+            "aeroway": ["__any__"]
+          }
+        }
+      }
+    },
+    "transport_areas": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "mapping_key",
+          "name": "class",
+          "key": null
+        }
+      ],
+      "type": "polygon",
+      "mappings": {
+        "rail": {
+          "mapping": {
+            "railway": ["__any__"]
+          }
+        },
+        "highway": {
+          "mapping": {
+            "highway": ["__any__"]
+          }
+        },
+        "aeroway": {
+          "mapping": {
+            "aeroway": ["__any__"]
+          }
+        }
+      }
+    },
+    "land_usages": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        }
+      ],
+      "type": "polygon",
+      "mapping": {
+        "natural": ["wood"],
+        "landuse": ["forest"]
+      }
+    },
+    "buildings": {
+      "fields": [
+        {
+          "type": "id",
+          "name": "osm_id",
+          "key": null
+        },
+        {
+          "type": "geometry",
+          "name": "geometry",
+          "key": null
+        },
+        {
+          "type": "mapping_value",
+          "name": "type",
+          "key": null
+        },
+        {
+          "type": "integer",
+          "name": "levels",
+          "key": "building:levels"
+        },
+        {
+          "type": "integer",
+          "name": "layer",
+          "key": "layer"
+        }
+      ],
+      "type": "polygon",
+      "mapping": {
+        "building": ["__any__"]
+      }
+    }
+  }
+}
