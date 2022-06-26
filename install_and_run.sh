@@ -24,9 +24,6 @@ select fav in "${foods[@]}"; do
     esac
 done
 
-chmod +x ./map_server_scripts/*
-
-
 ./install.sh && \
 ./create_osm_db.sh && \
 ./import_osm.sh && \
