@@ -13,16 +13,9 @@ wget -O tegola.zip https://github.com/go-spatial/tegola/releases/download/v0.15.
 unzip tegola.zip
 rm tegola.zip
 
-git clone https://github.com/adamakhtar/tegola-osm.git
-cd tegola-osm
-git checkout aa-my-version
-cd ..
-
-
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -keyout example.key -out example.crt -subj "/CN=ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com" \
   -addext "subjectAltName=DNS:ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com"
-
 
 mkdir ~/tegola_server_cache
 mkdir ~/tegola_osm_build
