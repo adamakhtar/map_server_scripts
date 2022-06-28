@@ -1,4 +1,10 @@
+git clone https://github.com/adamakhtar/map_server_scripts.git
+
 Copy .env.sample to .env and make sure to source it before running any scripts via `source ./.env`
+
+## Download the planet data
+
+See https://wiki.openstreetmap.org/wiki/Planet.osm#Downloading
 
 ## Setting up a server to process open street map data
 
