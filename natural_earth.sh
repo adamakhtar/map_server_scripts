@@ -147,8 +147,7 @@ for i in "${!dataurls[@]}"; do
 	# support for archives with more than one shapefile
 	for f in $i/*.shp; do
 		# reproject data to webmercator (3857) and insert into our database
-		# OGR_ENABLE_PARTIAL_REPROJECTION=true ogr2ogr -unsetFieldWidth -t_srs EPSG:3857 -nlt PROMOTE_TO_MULTI -f PostgreSQL PG:"dbname='$DB_NAME' host='$DB_HOST' port='$DB_PORT' user='$DB_USER' password='$DB_PW'" $f
-		OGR_ENABLE_PARTIAL_REPROJECTION=true ogr2ogr -unsetFieldWidth -t_srs EPSG:3857 -clipsrc -180.1 -85.0511 180.1 85.0511 -nlt PROMOTE_TO_MULTI -f PostgreSQL PG:"dbname='$DB_NAME' host='$DB_HOST' port='$DB_PORT' user='$DB_USER' password='$DB_PW'" $f
+		OGR_ENABLE_PARTIAL_REPROJECTION=true ogr2ogr -unsetFieldWidth -t_srs EPSG:3857 -nlt PROMOTE_TO_MULTI -f PostgreSQL PG:"dbname='$DB_NAME' host='$DB_HOST' port='$DB_PORT' user='$DB_USER' password='$DB_PW'" $f
 	done
 
 	# clean up
