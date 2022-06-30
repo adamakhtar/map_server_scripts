@@ -1,6 +1,10 @@
+create .server_env in ~/
+source .server_env
 git clone https://github.com/adamakhtar/map_server_scripts.git
-
-Copy .env.sample to .env and make sure to source it before running any scripts via `source ./.env`
+chmod oug=rwx map_server_scripts
+chmod oug=rwx map_server_scripts/\*
+cd map_server_scripts
+./install_and_run.sh
 
 ## Download the planet data
 
