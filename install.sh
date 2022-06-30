@@ -13,6 +13,10 @@ wget -O tegola.zip https://github.com/go-spatial/tegola/releases/download/v0.15.
 unzip tegola.zip
 rm tegola.zip
 
+# add home to path so we can run tegola from anywhere
+export PATH="$HOME/:$PATH"
+
+
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -keyout example.key -out example.crt -subj "/CN=ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com" \
   -addext "subjectAltName=DNS:ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com"
