@@ -5,24 +5,24 @@ places=("manchester" "newyork" "unitedstates" "kanto" "japan")
 select place in "${places[@]}"; do
     case $place in
         "manchester")
-            wget -O map.osm.pbf "http://download.geofabrik.de/europe/great-britain/england/greater-manchester-latest.osm.pbf"
+            wget -O $OSM_MAP_PATH "http://download.geofabrik.de/europe/great-britain/england/greater-manchester-latest.osm.pbf"
             break
             ;;
         "newyork")
-            wget -O map.osm.pbf "http://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf"
+            wget -O $OSM_MAP_PATH "http://download.geofabrik.de/north-america/us/new-york-latest.osm.pbf"
             break
 	    # optionally call a function or run some code here
             ;;
         "unitedstates")
-            wget -O map.osm.pbf "http://download.geofabrik.de/north-america/us-latest.osm.pbf"
+            wget -O $OSM_MAP_PATH "http://download.geofabrik.de/north-america/us-latest.osm.pbf"
             break
             ;;
         "kanto")
-            wget -O map.osm.pbf "http://download.geofabrik.de/asia/japan/kanto-latest.osm.pbf"
+            wget -O $OSM_MAP_PATH "http://download.geofabrik.de/asia/japan/kanto-latest.osm.pbf"
             break
             ;;
         "japan")
-            wget -O map.osm.pbf "http://download.geofabrik.de/asia/japan-latest.osm.pbf"
+            wget -O $OSM_MAP_PATH "http://download.geofabrik.de/asia/japan-latest.osm.pbf"
             break
             ;;
 
