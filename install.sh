@@ -26,6 +26,7 @@ mkdir ~/tegola_osm_build
 mkdir ~/tegola_osm_build/cache
 mkdir ~/tegola_osm_build/diff
 
-sudo -u postgres "CREATE ROLE $DB_USER LOGIN SUPERUSER PASSWORD '$DB_PW';"
+sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN SUPERUSER PASSWORD '$DB_PW';"
+sudo -u postgres psql -c "create database $DB_USER;"
 
 # sudo -u $DB_USER psql -c "ALTER USER $DB_USER PASSWORD '$DB_PW';"
