@@ -13,11 +13,12 @@
 type = "file"               # a file cache will cache to the local file system
 basepath = "${FILECACHE_BASEPATH}"
 
-# [webserver]
+[webserver]
 # ssl_cert = "/home/ubuntu/example.crt"
 # ssl_key = "/home/ubuntu/example.key"
 ssl_cert = "${SSL_CERT_PATH}"
 ssl_key = "${SSL_KEY_PATH}"
+port = ":${TEGOLA_PORT}"
 
 [webserver.headers]
 # redefine default cors origin
