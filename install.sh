@@ -16,6 +16,9 @@ rm tegola.zip
 # add home to path so we can run tegola from anywhere
 export PATH="$HOME/:$PATH"
 
+# allow tegola to listen to ssl port 443. Linux by default does allow users to listen to low level
+# ports by default
+sudo setcap CAP_NET_BIND_SERVICE=+eip $(which tegola)
 
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -keyout example.key -out example.crt -subj "/CN=ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com" \
@@ -25,6 +28,12 @@ mkdir ~/tegola_server_cache
 mkdir ~/tegola_osm_build
 mkdir ~/tegola_osm_build/cache
 mkdir ~/tegola_osm_build/diff
+
+sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+sudo apt update
+sudo apt install caddy
 
 sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN SUPERUSER PASSWORD '$DB_PW';"
 sudo -u postgres psql -c "create database $DB_USER;"
