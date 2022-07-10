@@ -13,10 +13,6 @@ wget -O tegola.zip https://github.com/go-spatial/tegola/releases/download/v0.15.
 unzip tegola.zip
 rm tegola.zip
 
-# allow tegola to listen to ssl port 443. Linux by default does allow users to listen to low level
-# ports by default
-sudo setcap CAP_NET_BIND_SERVICE=+eip $(which tegola)
-
 openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -keyout example.key -out example.crt -subj "/CN=ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com" \
   -addext "subjectAltName=DNS:ec2-3-113-244-229.ap-northeast-1.compute.amazonaws.com"
@@ -31,6 +27,11 @@ curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --d
 curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 sudo apt update
 sudo apt install caddy
+
+# allow caddy or tegola to listen to ssl port 443. Linux by default does allow users to listen to low level
+# ports by default
+sudo setcap CAP_NET_BIND_SERVICE=+eip $(which tegola)
+sudo setcap CAP_NET_BIND_SERVICE=+eip $(which caddy)
 
 sudo -u postgres psql -c "CREATE ROLE $DB_USER LOGIN SUPERUSER PASSWORD '$DB_PW';"
 sudo -u postgres psql -c "create database $DB_USER;"

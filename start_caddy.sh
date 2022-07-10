@@ -1,0 +1,1 @@
+caddy reverse-proxy --from $MAP_SERVER_DOMAIN --to :8080
