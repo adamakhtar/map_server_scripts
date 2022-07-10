@@ -13,9 +13,6 @@ wget -O tegola.zip https://github.com/go-spatial/tegola/releases/download/v0.15.
 unzip tegola.zip
 rm tegola.zip
 
-# add home to path so we can run tegola from anywhere
-export PATH="$HOME/:$PATH"
-
 # allow tegola to listen to ssl port 443. Linux by default does allow users to listen to low level
 # ports by default
 sudo setcap CAP_NET_BIND_SERVICE=+eip $(which tegola)
